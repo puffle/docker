@@ -1,0 +1,29 @@
+server {
+   listen 8080;
+   server_name {{ (parseUrl .Env.WEB_HOSTNAME).Host }};
+
+   root /usr/share/nginx/html;
+   index index.html index.htm;
+
+   # block files/folders starting with a dot (e.g. .git)
+   location ~ /\. {
+      deny all;
+   }
+
+   location /login {
+      proxy_pass {{ .Env.GAME_HTTP_HOST }}:{{ .Env.GAME_HTTP_PORT }}/api;
+      proxy_set_header Host $host;
+   }
+
+   location /world/blizzard {
+      proxy_pass {{ .Env.GAME_BLIZZARD_HOST }}:{{ .Env.GAME_BLIZZARD_PORT }};
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "Upgrade";
+      proxy_set_header Host $host;
+   }
+
+   # example config for a php container
+   # location /create {
+   #    proxy_pass {{ .Env.WEB_CREATE_DOMAIN }}:{{ .Env.WEB_CREATE_PORT }};
+   # }
+}

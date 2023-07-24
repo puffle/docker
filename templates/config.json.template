@@ -1,0 +1,32 @@
+{
+  "logLevel": "info",
+  "crypto": {
+    "secret": "{{ .Env.GAME_CRYPTO_SECRET }}",
+    "loginKeyExpiry": 600,
+    "audience": "{{ .Env.GAME_CRYPTO_AUDIENCE }}",
+    "issuer": "{{ .Env.GAME_CRYPTO_ISSUER }}"
+  },
+  "cors": {
+    "origin": "{{ .Env.WEB_HOSTNAME }}:{{ .Env.WEB_PORT }}"
+  },
+  "reverseProxy": {
+    "enabled": true,
+    "trustForwarded": true
+  },
+  "http": {
+    "host": "localhost",
+    "port": {{ .Env.GAME_HTTP_PORT }}
+  },
+  "worlds": {
+    "Blizzard": {
+      "host": "localhost",
+      "port": {{ .Env.GAME_BLIZZARD_PORT }},
+      "maxUsers": {{ .Env.GAME_BLIZZARD_MAX_USERS }}
+    }
+  },
+  "game": {
+    "preferredSpawn": {{ .Env.GAME_PREFERRED_SPAWN }},
+    "iglooIdOffset": 2000,
+    "fixSync": false
+  }
+}

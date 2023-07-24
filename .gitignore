@@ -1,0 +1,11 @@
+# sensitive data
+.data/
+.env
+docker-compose.override.yml
+
+# sources
+client/
+server/
+
+# nginx root files
+www/
