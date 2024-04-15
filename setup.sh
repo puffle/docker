@@ -1,6 +1,6 @@
-!/bin/sh
+#!/bin/sh
 
-Check if required commands are available
+# Check if required commands are available
 check_command()
 {
 	local command=$1
@@ -16,7 +16,7 @@ check_command "node"
 check_command "wget"
 check_command "unzip"
 
-#######################################################################################################################################
+########################################################################################################################################
 
 # Setup
 BASE_DIR=$(pwd)
